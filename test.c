@@ -17,6 +17,15 @@ typedef struct
     int correct; // 0-3 for A-D
 } Question;
 
+// Struct for quiz result
+typedef struct
+{
+    char name[50];
+    char level[10];
+    int score;
+    double time;
+} Result;
+
 // Sample questions for each level (expand as needed)
 Question easyPool[POOL_SIZE] = {
     {"What is 2 + 2?", {"A. 3", "B. 4", "C. 5", "D. 6"}, 1},
@@ -102,6 +111,70 @@ void selectRandomQuestions(Question pool[], Question selected[])
     for (int i = 0; i < TOTAL_QUESTIONS; i++)
     {
         selected[i] = pool[indices[i]];
+    }
+}
+
+// Function to load results from file
+int loadResults(Result results[])
+{
+    FILE *file = fopen("iq_results.txt", "r");
+    if (!file)
+    {
+        return 0;
+    }
+    char line[512];
+    int count = 0;
+    while (fgets(line, sizeof(line), file) && count < 100)
+    {
+        char name[50], level[10], date[50];
+        int score;
+        double time;
+        if (sscanf(line, "Name: %49[^,], Level: %9[^,], Score: %d/10, Time: %lf seconds, Date: %[^\n]",
+                   name, level, &score, &time, date) == 5)
+        {
+            strcpy(results[count].name, name);
+            strcpy(results[count].level, level);
+            results[count].score = score;
+            results[count].time = time;
+            count++;
+        }
+    }
+    fclose(file);
+    return count;
+}
+
+// Function to compare results for sorting (higher score first, then lower time)
+int compareResults(const void *a, const void *b)
+{
+    Result *r1 = (Result *)a;
+    Result *r2 = (Result *)b;
+    if (r1->score != r2->score)
+        return r2->score - r1->score; // descending score
+    return r1->time - r2->time; // ascending time
+}
+
+// Function to display top scorers
+void displayTopScorers(Result results[], int count, char *currentName)
+{
+    if (count == 0)
+    {
+        printf("No results available yet.\n");
+        return;
+    }
+    qsort(results, count, sizeof(Result), compareResults);
+    printf("\n--- Top Scorers ---\n");
+    printf("Rank | Name          | Level   | Score | Time (s)\n");
+    printf("-----|---------------|---------|-------|---------\n");
+    int displayCount = count < 10 ? count : 10;
+    for (int i = 0; i < displayCount; i++)
+    {
+        char marker = (strcmp(results[i].name, currentName) == 0) ? '*' : ' ';
+        printf("%4d%c| %-13s | %-7s | %2d/10 | %.1f\n",
+               i + 1, marker, results[i].name, results[i].level, results[i].score, results[i].time);
+    }
+    if (strcmp(results[0].name, currentName) == 0)
+    {
+        printf("* Indicates your score.\n");
     }
 }
 // Authentication functions
@@ -301,6 +374,11 @@ endQuiz:
     printf("Score: %d/%d (%.2f%% accuracy)\n", score, TOTAL_QUESTIONS, (float)score / TOTAL_QUESTIONS * 100);
     printf("Time Taken: %.0f seconds\n", totalTime);
     printf("Message: %s\n", getImprovingMessage(score));
+
+    // Load and display top scorers
+    Result allResults[100];
+    int resultCount = loadResults(allResults);
+    displayTopScorers(allResults, resultCount, name);
 
     // Prevent terminal from closing immediately
     // printf("\nPress any key to exit...\n");

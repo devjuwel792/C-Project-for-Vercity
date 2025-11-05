@@ -1,0 +1,12 @@
+Register/Login (username, password)
+User info file এ save করা
+প্রতিবার নতুন করে shuffle হয়ে আসবে 
+Level অনুযায়ী আলাদা question set
+Level select (Easy, Medium, Hard)
+মোট স্কোর
+সঠিক উত্তর সংখ্যা
+Percentage বা Feedback 
+results.txt বা database এ save করা
+পুরানো score history দেখা যাবে
+Top scorers list
+Rank system 
