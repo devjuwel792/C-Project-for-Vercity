@@ -289,5 +289,9 @@ endQuiz:
     printf("Time Taken: %.0f seconds\n", totalTime);
     printf("Message: %s\n", getImprovingMessage(score));
 
+    // Prevent terminal from closing immediately
+    printf("\nPress any key to exit...\n");
+    system("pause");
+
     return 0;
 }

@@ -40,3 +40,5 @@ Name: juwel, Level: easy, Score: 9/10, Time: 89 seconds, Date: Wed Nov 05 16:22:
 
 Name: juwel, Level: easy, Score: 10/10, Time: 69 seconds, Date: Wed Nov 05 16:47:05 2025
 
+Name: juwel, Level: easy, Score: 2/10, Time: 18 seconds, Date: Wed Nov 05 16:50:20 2025
+
