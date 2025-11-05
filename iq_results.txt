@@ -4,3 +4,35 @@ Name: juwel, Level: Easy, Score: 3/10, Time: 67 seconds, Date: Wed Nov 05 10:06:
 
 Name: juwel, Level: easy, Score: 0/10, Time: 13 seconds, Date: Wed Nov 05 10:23:23 2025
 
+Name: juwel, Level: ASDFASDF, Score: 0/10, Time: 491 seconds, Date: Wed Nov 05 14:22:47 2025
+
+Name: juwel, Level: asdf, Score: 1/10, Time: 16 seconds, Date: Wed Nov 05 15:35:01 2025
+
+Name: asdf, Level: asd, Score: 0/10, Time: 13 seconds, Date: Wed Nov 05 15:42:32 2025
+
+Name: asdf, Level: as, Score: 0/10, Time: 5 seconds, Date: Wed Nov 05 15:42:42 2025
+
+Name: adsf, Level: asdf, Score: 1/10, Time: 4 seconds, Date: Wed Nov 05 15:43:36 2025
+
+Name: asdf, Level: easy, Score: 6/10, Time: 12 seconds, Date: Wed Nov 05 15:43:52 2025
+
+Name: a, Level: a, Score: 2/10, Time: 6 seconds, Date: Wed Nov 05 15:44:20 2025
+
+Name: asf, Level: as, Score: 1/10, Time: 4 seconds, Date: Wed Nov 05 15:47:59 2025
+
+Name: asdf, Level: Juwel, Score: 2/10, Time: 10 seconds, Date: Wed Nov 05 15:55:16 2025
+
+Name: asdf, Level: asdf, Score: 2/10, Time: 4 seconds, Date: Wed Nov 05 15:55:53 2025
+
+Name: sadf, Level: as, Score: 7/10, Time: 14 seconds, Date: Wed Nov 05 15:56:43 2025
+
+Name: Juwel, Level: Hello, Score: 7/10, Time: 16 seconds, Date: Wed Nov 05 15:58:24 2025
+
+Name: af, Level: asd, Score: 2/10, Time: 3 seconds, Date: Wed Nov 05 15:59:01 2025
+
+Name: sadf, Level: asdf, Score: 0/10, Time: 39 seconds, Date: Wed Nov 05 16:02:59 2025
+
+Name: asdf, Level: asd, Score: 0/10, Time: 60 seconds, Date: Wed Nov 05 16:04:04 2025
+
+Name: a, Level: asd, Score: 2/10, Time: 27 seconds, Date: Wed Nov 05 16:04:37 2025
+

@@ -2,10 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <ctype.h>
 
 #define TOTAL_QUESTIONS 10
 #define QUESTION_TIME_LIMIT 30 // seconds per question
-#define OVERALL_TIME_LIMIT 900 // 15 minutes in seconds
+#define OVERALL_TIME_LIMIT 20  // 15 minutes in seconds
 #define POOL_SIZE 15           // questions per level
 
 // Struct for a question
@@ -97,7 +98,7 @@ void selectRandomQuestions(Question pool[], Question selected[])
         indices[i] = indices[j];
         indices[j] = temp;
     }
-   
+
     for (int i = 0; i < TOTAL_QUESTIONS; i++)
     {
         selected[i] = pool[indices[i]];
@@ -111,6 +112,8 @@ int main()
     int score = 0;
     time_t startTime = time(NULL), endTime;
     Question selected[TOTAL_QUESTIONS];
+    int validInput = 0;
+    int answered = 0;
 
     // Get user details
     printf("Enter your name: ");
@@ -145,58 +148,29 @@ int main()
     for (int i = 0; i < TOTAL_QUESTIONS; i++)
     {
         time_t questionStart = time(NULL);
+        char answer;
         printf("\nQuestion %d: %s\n", i + 1, selected[i].question);
         for (int j = 0; j < 4; j++)
         {
             printf("%s\n", selected[i].options[j]);
         }
+        int choice;
+
         printf("Your answer (A/B/C/D): ");
 
-        // Timer loop for question
-        char answer = 0;
-        while (difftime(time(NULL), questionStart) < QUESTION_TIME_LIMIT)
-        {
-            if (difftime(time(NULL), questionStart) > QUESTION_TIME_LIMIT - 10)
-            {
-                printf("10 seconds left!\n");
-            }
-            if (kbhit())
-            { // Non-blocking input (Windows-specific; for cross-platform, use threads or select)
-                answer = getchar();
-                break;
-            }
-            // Check overall time
-            if (difftime(time(NULL), startTime) >= OVERALL_TIME_LIMIT)
-            {
-                printf("Time's up! Quiz ended early.\n");
-                goto endQuiz;
-            }
-        }
+        scanf(" %c", &answer);
+        answer = toupper(answer);
 
-        if (answer == 0)
+        choice = answer - 'A';
+
+        if (choice == selected[i].correct)
         {
-            printf("Time out! Moving to next.\n");
+            score++;
+            printf("Correct!\n");
         }
         else
         {
-            getchar(); // Consume newline
-            int choice = answer - 'A';
-            if (choice == selected[i].correct)
-            {
-                score++;
-                printf("Correct!\n");
-            }
-            else
-            {
-                printf("Wrong! Correct is %c.\n", 'A' + selected[i].correct);
-            }
-        }
-
-        // Check overall time again
-        if (difftime(time(NULL), startTime) >= OVERALL_TIME_LIMIT)
-        {
-            printf("Overall time's up!\n");
-            break;
+            printf("Wrong! Correct is %c.\n", 'A' + selected[i].correct);
         }
     }
 
