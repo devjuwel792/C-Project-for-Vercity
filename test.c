@@ -4,6 +4,50 @@
 #include <time.h>
 #include <ctype.h>
 
+// Authentication functions
+int sign_up(char *username, char *password) {
+    FILE *file = fopen("users.txt", "a+");
+    if (!file) {
+        printf("Error opening users file.\n");
+        return 0;
+    }
+    char line[256];
+    rewind(file);
+    while (fgets(line, sizeof(line), file)) {
+        char *token = strtok(line, " ");
+        if (token && strcmp(token, username) == 0) {
+            printf("Username already exists. Try logging in.\n");
+            fclose(file);
+            return 0;
+        }
+    }
+    fprintf(file, "%s %s\n", username, password);
+    fclose(file);
+    printf("Sign up successful!\n");
+    return 1;
+}
+
+int log_in(char *username, char *password) {
+    FILE *file = fopen("users.txt", "r");
+    if (!file) {
+        printf("No users registered yet. Please sign up first.\n");
+        return 0;
+    }
+    char line[256];
+    while (fgets(line, sizeof(line), file)) {
+        char *stored_username = strtok(line, " ");
+        char *stored_password = strtok(NULL, "\n");
+        if (stored_username && stored_password && strcmp(stored_username, username) == 0 && strcmp(stored_password, password) == 0) {
+            fclose(file);
+            printf("Login successful!\n");
+            return 1;
+        }
+    }
+    fclose(file);
+    printf("Invalid username or password.\n");
+    return 0;
+}
+
 #define TOTAL_QUESTIONS 10
 #define QUESTION_TIME_LIMIT 30 // seconds per question
 #define OVERALL_TIME_LIMIT 20  // 15 minutes in seconds
@@ -115,23 +159,67 @@ int main()
     int validInput = 0;
     int answered = 0;
 
-    // Get user details
-    printf("Enter your name: ");
-    // fgets(name, sizeof(name), stdin);
-    scanf("%s", name);
+    // Authentication
+    int authenticated = 0;
+    int attempts = 0;
+
+    while (!authenticated && attempts < 3) {
+
+        printf("Choose an option:\n1. Sign Up\n2. Log In\n");
+
+        int choice;
+        printf("Enter choice (1 or 2): ");
+
+        scanf("%d", &choice);
+        if (choice == 1) {
+            printf("Enter username: ");
+            scanf("%s", name);
+            char password[50];
+            printf("Enter password: ");
+            scanf("%s", password);
+            if (sign_up(name, password)) {
+                authenticated = 1;
+            }
+        } else if (choice == 2) {
+            printf("Enter username: ");
+            scanf("%s", name);
+            char password[50];
+            printf("Enter password: ");
+            scanf("%s", password);
+            if (log_in(name, password)) {
+                authenticated = 1;
+            }
+        } else {
+            printf("Invalid choice.\n");
+        }
+
+        attempts++;
+        if (!authenticated && attempts < 3) {
+            printf("Try again.\n");
+        }
+    }
+
+
+    
+    
+    if (!authenticated) {
+        printf("Too many failed attempts. Exiting.\n");
+        return 1;
+    }
+
     printf("\nSelect level (Easy/Medium/Hard): ");
     scanf("%s", level);
 
     // Select pool and randomize questions
-    if (level == "Easy" || level == "easy")
+    if (strcmp(level, "Easy") == 0 || strcmp(level, "easy") == 0)
     {
         selectRandomQuestions(easyPool, selected);
     }
-    else if (level == "Medium" || level == "medium")
+    else if (strcmp(level, "Medium") == 0 || strcmp(level, "medium") == 0)
     {
         selectRandomQuestions(mediumPool, selected);
     }
-    else if (level == "Hard" || level == "hard")
+    else if (strcmp(level, "Hard") == 0 || strcmp(level, "hard") == 0)
     {
         selectRandomQuestions(hardPool, selected);
     }
@@ -139,7 +227,7 @@ int main()
     {
         printf("Invalid level. Defaulting to Easy.\n");
         selectRandomQuestions(easyPool, selected);
-        // strcpy(level, "Easy");
+        strcpy(level, "Easy");
     }
 
     printf("Quiz starts now! You have 15 minutes total. Each question has 30 seconds.\n");
@@ -174,6 +262,8 @@ int main()
         }
     }
 
+
+    
 endQuiz:
     endTime = time(NULL);
     double totalTime = difftime(endTime, startTime);

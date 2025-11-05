@@ -36,3 +36,7 @@ Name: asdf, Level: asd, Score: 0/10, Time: 60 seconds, Date: Wed Nov 05 16:04:04
 
 Name: a, Level: asd, Score: 2/10, Time: 27 seconds, Date: Wed Nov 05 16:04:37 2025
 
+Name: juwel, Level: easy, Score: 9/10, Time: 89 seconds, Date: Wed Nov 05 16:22:17 2025
+
+Name: juwel, Level: easy, Score: 10/10, Time: 69 seconds, Date: Wed Nov 05 16:47:05 2025
+
