@@ -297,12 +297,13 @@ endQuiz:
     printf("\n--- Results ---\n");
     printf("Name: %s\n", name);
     printf("Level: %s\n", level);
-    printf("Score: %d/10\n", score);
+    printf("Score: %d/%d\n", score, TOTAL_QUESTIONS);
+    printf("Score: %d/%d (%.2f%% accuracy)\n", score, TOTAL_QUESTIONS, (float)score / TOTAL_QUESTIONS * 100);
     printf("Time Taken: %.0f seconds\n", totalTime);
     printf("Message: %s\n", getImprovingMessage(score));
 
     // Prevent terminal from closing immediately
-    printf("\nPress any key to exit...\n");
+    // printf("\nPress any key to exit...\n");
     system("pause");
 
     return 0;
