@@ -46,3 +46,7 @@ Name: juwel, Level: easy, Score: 7/10, Time: 68 seconds, Date: Wed Nov 05 16:53:
 
 Name: juwel, Level: easy, Score: 1/10, Time: 18 seconds, Date: Wed Nov 05 17:20:34 2025
 
+Name: \2, Level: easy, Score: 9/10, Time: 89 seconds, Date: Thu Nov 06 14:05:27 2025
+
+Name: robiul, Level: Medium, Score: 6/10, Time: 383 seconds, Date: Thu Nov 06 14:12:11 2025
+
