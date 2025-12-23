@@ -50,3 +50,5 @@ Name: \2, Level: easy, Score: 9/10, Time: 89 seconds, Date: Thu Nov 06 14:05:27 
 
 Name: robiul, Level: Medium, Score: 6/10, Time: 383 seconds, Date: Thu Nov 06 14:12:11 2025
 
+Name: sorif, Level: easy, Score: 10/10, Time: 103 seconds, Date: Mon Dec 15 09:53:07 2025
+

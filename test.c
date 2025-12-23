@@ -5,9 +5,9 @@
 #include <ctype.h>
 
 #define TOTAL_QUESTIONS 10
-#define QUESTION_TIME_LIMIT 30 // seconds per question
-#define OVERALL_TIME_LIMIT 20  // 15 minutes in seconds
-#define POOL_SIZE 15           // questions per level
+// #define QUESTION_TIME_LIMIT 30
+#define OVERALL_TIME_LIMIT 60
+#define POOL_SIZE 15
 
 // Struct for a question
 typedef struct
@@ -30,7 +30,6 @@ typedef struct
 Question easyPool[POOL_SIZE] = {
     {"What is 2 + 2?", {"A. 3", "B. 4", "C. 5", "D. 6"}, 1},
     {"Which is the odd one out: Apple, Banana, Carrot, Orange?", {"A. Apple", "B. Banana", "C. Carrot", "D. Orange"}, 2},
-    // Add 13 more similar easy questions...
     {"What comes next: 1, 3, 5, ?", {"A. 6", "B. 7", "C. 8", "D. 9"}, 1},
     {"If A=1, B=2, C=3, what is D?", {"A. 4", "B. 5", "C. 6", "D. 7"}, 0},
     {"How many sides does a triangle have?", {"A. 2", "B. 3", "C. 4", "D. 5"}, 1},
@@ -48,7 +47,6 @@ Question easyPool[POOL_SIZE] = {
 Question mediumPool[POOL_SIZE] = {
     {"What is 15 + 27?", {"A. 40", "B. 42", "C. 44", "D. 46"}, 1},
     {"Which is the odd one out: 2, 4, 6, 9?", {"A. 2", "B. 4", "C. 6", "D. 9"}, 3},
-    // Add 13 more medium questions...
     {"What comes next: 2, 4, 8, 16, ?", {"A. 18", "B. 24", "C. 32", "D. 64"}, 2},
     {"If A=2, B=4, C=6, what is D?", {"A. 8", "B. 10", "C. 12", "D. 14"}, 0},
     {"How many degrees in a right angle?", {"A. 45", "B. 90", "C. 180", "D. 360"}, 1},
@@ -65,8 +63,7 @@ Question mediumPool[POOL_SIZE] = {
 
 Question hardPool[POOL_SIZE] = {
     {"What is 123 + 456?", {"A. 579", "B. 589", "C. 599", "D. 609"}, 0},
-    {"Which is the odd one out: 1, 8, 27, 64, 125?", {"A. 1", "B. 8", "C. 27", "D. 64"}, 0}, // 1 is not a cube
-    // Add 13 more hard questions...
+    {"Which is the odd one out: 1, 8, 27, 64, 125?", {"A. 1", "B. 8", "C. 27", "D. 64"}, 0}, 
     {"What comes next: 1, 1, 2, 3, 5, 8, ?", {"A. 10", "B. 11", "C. 12", "D. 13"}, 3},
     {"If A=3, B=6, C=9, what is D?", {"A. 12", "B. 15", "C. 18", "D. 21"}, 0},
     {"How many sides does a dodecagon have?", {"A. 10", "B. 12", "C. 14", "D. 16"}, 1},
@@ -150,7 +147,7 @@ int compareResults(const void *a, const void *b)
     Result *r2 = (Result *)b;
     if (r1->score != r2->score)
         return r2->score - r1->score; // descending score
-    return r1->time - r2->time; // ascending time
+    return r1->time - r2->time;       // ascending time
 }
 
 // Function to display top scorers
@@ -317,11 +314,16 @@ int main()
         strcpy(level, "Easy");
     }
 
-    printf("Quiz starts now! You have 15 minutes total. Each question has 30 seconds.\n");
+    printf("Quiz starts now! You have 1 minutes total. Good luck!\n");
 
     // Quiz loop
     for (int i = 0; i < TOTAL_QUESTIONS; i++)
     {
+        if (difftime(time(NULL), startTime) >= OVERALL_TIME_LIMIT)
+        {
+            printf("Time's up!\n");
+            goto endQuiz;
+        }
         time_t questionStart = time(NULL);
         char answer;
         printf("\nQuestion %d: %s\n", i + 1, selected[i].question);

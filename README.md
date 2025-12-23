@@ -1,12 +1,14 @@
 # IQ Quiz Application
 
 ## Overview
+
 This is a console-based IQ Quiz application written in C. It provides an interactive quiz experience with user authentication, multiple difficulty levels, timed questions, scoring, and result tracking. The application is designed to test general knowledge and provide feedback based on performance.
 
 ## Features
+
 - **User Authentication**: Sign up and log in functionality with username and password storage in `users.txt`.
 - **Difficulty Levels**: Three levels - Easy, Medium, and Hard - each with a pool of 15 questions, from which 10 are randomly selected per quiz.
-- **Timed Quiz**: 30 seconds per question and a total time limit of 15 minutes (900 seconds).
+
 - **Randomized Questions**: Questions are shuffled each time to ensure variety.
 - **Scoring and Feedback**: Tracks correct answers, calculates percentage, and provides encouraging messages based on score.
 - **Result Storage**: Saves quiz results to `iq_results.txt` with name, level, score, time, and date.
@@ -14,10 +16,12 @@ This is a console-based IQ Quiz application written in C. It provides an interac
 - **Authentication Attempts**: Allows up to 3 login/signup attempts before exiting.
 
 ## Requirements
+
 - C compiler (e.g., GCC)
 - Standard C libraries: stdio.h, stdlib.h, string.h, time.h, ctype.h
 
 ## Setup and Installation
+
 1. **Clone or Download**: Ensure all files are in the same directory: `test.c`, `users.txt`, `iq_results.txt`, etc.
 2. **Compile the Program**:
    ```
@@ -31,16 +35,20 @@ This is a console-based IQ Quiz application written in C. It provides an interac
    Or on Windows: `iq_quiz.exe`
 
 ## Usage
+
 1. **Authentication**:
+
    - Choose to Sign Up (create a new account) or Log In (existing account).
    - Enter username and password.
    - Up to 3 attempts allowed.
 
 2. **Level Selection**:
+
    - Choose Easy, Medium, or Hard.
    - Invalid input defaults to Easy.
 
 3. **Quiz**:
+
    - Answer 10 multiple-choice questions (A/B/C/D).
    - Each question has a 30-second timer (not enforced in code, but recommended).
    - Total quiz time is tracked.
@@ -50,6 +58,7 @@ This is a console-based IQ Quiz application written in C. It provides an interac
    - See the top scorers leaderboard.
 
 ## File Structure
+
 - `test.c`: Main source code containing all logic.
 - `users.txt`: Stores user credentials (username password).
 - `iq_results.txt`: Stores quiz results in CSV-like format.
@@ -58,6 +67,7 @@ This is a console-based IQ Quiz application written in C. It provides an interac
 - `test.exe`: Compiled executable (generated after compilation).
 
 ## Sample Output
+
 ```
 Choose an option:
 1. Sign Up
@@ -96,13 +106,16 @@ Rank | Name          | Level   | Score | Time (s)
 ```
 
 ## Known Issues and TODO
+
 - Time limits are not strictly enforced (questions don't auto-timeout).
 - Level input is case-sensitive in some parts (fixed in code).
 - Expand question pools for more variety.
 - Add more robust error handling.
 
 ## Contributing
+
 Feel free to fork and improve the code. Ensure changes are tested before submission.
 
 ## License
+
 This project is open-source. Use at your own risk.
