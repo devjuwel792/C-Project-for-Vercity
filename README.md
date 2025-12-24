@@ -8,7 +8,7 @@ This is a console-based IQ Quiz application written in C. It provides an interac
 
 - **User Authentication**: Sign up and log in functionality with username and password storage in `users.txt`.
 - **Difficulty Levels**: Three levels - Easy, Medium, and Hard - each with a pool of 15 questions, from which 10 are randomly selected per quiz.
-
+- **Timed Quiz**: Overall time limit of 60 seconds; quiz ends if time expires.
 - **Randomized Questions**: Questions are shuffled each time to ensure variety.
 - **Scoring and Feedback**: Tracks correct answers, calculates percentage, and provides encouraging messages based on score.
 - **Result Storage**: Saves quiz results to `iq_results.txt` with name, level, score, time, and date.

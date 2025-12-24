@@ -52,3 +52,7 @@ Name: robiul, Level: Medium, Score: 6/10, Time: 383 seconds, Date: Thu Nov 06 14
 
 Name: sorif, Level: easy, Score: 10/10, Time: 103 seconds, Date: Mon Dec 15 09:53:07 2025
 
+Name: juwel12345, Level: easy, Score: 0/10, Time: 260 seconds, Date: Tue Dec 23 17:45:52 2025
+
+Name: juwel, Level: easy, Score: 1/10, Time: 93 seconds, Date: Tue Dec 23 17:49:00 2025
+
