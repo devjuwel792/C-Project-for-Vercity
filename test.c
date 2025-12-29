@@ -314,7 +314,7 @@ int main()
         strcpy(level, "Easy");
     }
 
-    printf("Quiz starts now! You have %d seconds to answer 10 questions. You have 1 minutes total. Good luck!\n", OVERALL_TIME_LIMIT);
+    printf("Quiz starts now! You have %d minutes to answer 10 questions. Good luck!\n", OVERALL_TIME_LIMIT / 60);
 
 
     
