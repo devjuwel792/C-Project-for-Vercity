@@ -6,7 +6,7 @@
 
 #define TOTAL_QUESTIONS 10
 // #define QUESTION_TIME_LIMIT 30
-#define OVERALL_TIME_LIMIT 60
+#define OVERALL_TIME_LIMIT 60*10 // 10 minutes
 #define POOL_SIZE 15
 
 // Struct for a question
@@ -314,8 +314,10 @@ int main()
         strcpy(level, "Easy");
     }
 
-    printf("Quiz starts now! You have 1 minutes total. Good luck!\n");
+    printf("Quiz starts now! You have %d seconds to answer 10 questions. You have 1 minutes total. Good luck!\n", OVERALL_TIME_LIMIT);
 
+
+    
     // Quiz loop
     for (int i = 0; i < TOTAL_QUESTIONS; i++)
     {
@@ -372,7 +374,6 @@ endQuiz:
     printf("\n--- Results ---\n");
     printf("Name: %s\n", name);
     printf("Level: %s\n", level);
-    printf("Score: %d/%d\n", score, TOTAL_QUESTIONS);
     printf("Score: %d/%d (%.2f%% accuracy)\n", score, TOTAL_QUESTIONS, (float)score / TOTAL_QUESTIONS * 100);
     printf("Time Taken: %.0f seconds\n", totalTime);
     printf("Message: %s\n", getImprovingMessage(score));
@@ -385,6 +386,7 @@ endQuiz:
     // Prevent terminal from closing immediately
     // printf("\nPress any key to exit...\n");
     system("pause");
+
 
     return 0;
 }
